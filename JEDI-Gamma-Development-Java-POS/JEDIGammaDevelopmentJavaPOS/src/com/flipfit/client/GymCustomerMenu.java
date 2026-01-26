@@ -41,26 +41,14 @@ public class GymCustomerMenu {
         }
     }
 
-    public void bookSlot(int userId) {
-        // Hardcoded example for demonstration as requested
-        int selectedSlotId = 101; 
-        int selectedCentreId = 10;
-
-        // Simulating logic: If slot is full (Hardcoded for your presentation)
-        System.out.println("\nChecking availability for Slot 101...");
-        System.out.println("Status: This slot is currently full.");
-        
-        System.out.print("Would you like to join the Waiting List for this slot? (yes/no): ");
-        String joinChoice = scanner.next();
-
-        if (joinChoice.equalsIgnoreCase("yes")) {
-            // Calls the business layer to update the Map/Queue
-            waitingListService.addCustomerToWaitlist(userId, selectedSlotId, selectedCentreId);
-            System.out.println("Success: You have been added to the queue!");
-        }
+    private void viewWaitlistStatus() {
     }
 
-    private void viewWaitlistStatuhesare s() {
+    public void bookSlot(int userId) {
+
+    }
+
+    private void viewWaitlistStatuhesare() {
         System.out.print("Enter Slot ID to check waitlist: ");
         int slotId = scanner.nextInt();
         

@@ -1,40 +1,32 @@
 package com.flipfit.bean;
 
 public class Booking {
-	private String bookingId;
-    private String status;
-    private BookingDetails bookingDetails;
-    private Payment payment;
+    private int bookingId;
+    private int userId;
+    private int slotId;
+    private int centreId;
+    private int numberOfMembers;
+    private double totalCost;
 
-    public String getBookingId() {
-        return bookingId;
-    }
-
-    public void setBookingId(String bookingId) {
+    public Booking(int bookingId, int userId, int slotId, int centreId, int numberOfMembers, double totalCost) {
         this.bookingId = bookingId;
+        this.userId = userId;
+        this.slotId = slotId;
+        this.centreId = centreId;
+        this.numberOfMembers = numberOfMembers;
+        this.totalCost = totalCost;
     }
 
-    public String getStatus() {
-        return status;
-    }
+    // Getters and Setters
+    public int getBookingId() { return bookingId; }
+    public int getUserId() { return userId; }
+    public int getSlotId() { return slotId; }
+    public int getCentreId() { return centreId; }
+    public int getNumberOfMembers() { return numberOfMembers; }
+    public double getTotalCost() { return totalCost; }
 
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public BookingDetails getBookingDetails() {
-        return bookingDetails;
-    }
-
-    public void setBookingDetails(BookingDetails bookingDetails) {
-        this.bookingDetails = bookingDetails;
-    }
-
-    public Payment getPayment() {
-        return payment;
-    }
-
-    public void setPayment(Payment payment) {
-        this.payment = payment;
+    @Override
+    public String toString() {
+        return "Booking ID: " + bookingId + " | Slot: " + slotId + " | Members: " + numberOfMembers + " | Total: ₹" + totalCost;
     }
 }

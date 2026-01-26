@@ -1,48 +1,99 @@
-/**
- * 
- */
 package com.flipfit.bean;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
- * 
+ * Represents a Gym Centre in the FlipFit system.
+ * Slots are managed via a List, where index 0 is the first slot of the day.
  */
 public class GymCentre {
-	private String centreId;
-    private String ownerId;
-    private String gymName;
-    private List<Slot> slots;
+    private int centreId;
+    private String centreName;
+    private String openTime;
+    private List<Slot> slots; // 1 array slots contain both morning and evening, consecutive indexes
+    private int price;
 
-    public String getCentreId() {
-        return centreId;
+    // Default Constructor
+    public GymCentre() {
+        this.slots = new ArrayList<>();
     }
 
-    public void setCentreId(String centreId) {
+    public List<Slot> getFilledSlots() {
+        List<Slot> filledSlots = new ArrayList<>();
+        for (Slot s : this.slots) {
+            if (s.isFull()) { // This calls the helper method you wrote in Slot.java
+                filledSlots.add(s);
+            }
+        }
+        return filledSlots;
+    }
+
+    // Parameterized Constructor
+    public GymCentre(int centreId, String centreName, String openTime, int price) {
         this.centreId = centreId;
+        this.centreName = centreName;
+        this.openTime = openTime;
+        this.price = price;
+        this.slots = new ArrayList<>();
     }
 
-    public String getOwnerId() {
-        return ownerId;
+    public void viewDetails() {
+        System.out.println("Centre ID: " + centreId);
+        System.out.println("Center Name: " + centreName);
+        System.out.println("Open Time: " + openTime);
+        System.out.println("Price per slot: " + price);
+        return;
     }
 
-    public void setOwnerId(String ownerId) {
-        this.ownerId = ownerId;
+    /**
+     * Adds a new slot to the end of the schedule.
+     * @param slot The Slot object to add
+     * @return true if added successfully
+     */
+    public boolean addSlot(Slot slot) {
+        System.out.println("Slot added...");
+        return this.slots.add(slot);
     }
 
-    public String getGymName() {
-        return gymName;
+    /**
+     * Removes a slot by its index (e.g., index 0 for the first slot).
+     * @param index The position of the slot in the list
+     * @return true if removed successfully
+     */
+    public boolean removeSlot(int index) {
+        if (index >= 0 && index < slots.size()) {
+            slots.remove(index);
+            System.out.println("Slot at index " + index + " removed!");
+            return true;
+        }
+        System.out.println("Invalid slot index.");
+        return false;
     }
 
-    public void setGymName(String gymName) {
-        this.gymName = gymName;
+    /**
+     * Updates the price for the entire centre.
+     */
+    public boolean changePricePerSlot(int newPrice) {
+        this.price = newPrice;
+        System.out.println("Price updated to: " + newPrice);
+        return true;
     }
 
-    public List<Slot> getSlots() {
-        return slots;
-    }
+    // --- Getters and Setters ---
 
-    public void setSlots(List<Slot> slots) {
-        this.slots = slots;
-    }
+    public int getCentreId() { return centreId; }
+    public void setCentreId(int centreId) { this.centreId = centreId; }
+
+    public String getCentreName() { return centreName; }
+    public void setCentreName(String centreName) { this.centreName = centreName; }
+
+    public String getOpenTime() { return openTime; }
+    public void setOpenTime(String openTime) { this.openTime = openTime; }
+
+    public List<Slot> getSlots() { return slots; }
+    public void setSlots(List<Slot> slots) { this.slots = slots; }
+
+    public int getPrice() { return price; }
+    public void setPrice(int price) { this.price = price; }
 }

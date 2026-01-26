@@ -6,7 +6,7 @@ package com.flipfit.business;
 /**
  * 
  */
-public interface BookingBusiness {
+public interface BookingBusinessInterface {
 	public boolean validateNoConflict();
     public void promoteWaitlist();
 }

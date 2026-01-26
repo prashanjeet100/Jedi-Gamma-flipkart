@@ -1,48 +1,17 @@
-/**
- * 
- */
 package com.flipfit.bean;
 
-import java.security.Timestamp;
-
-/**
- * 
- */
 public class Notification {
-	private String notificationId;
+    private int notificationId;
+    private int userId;
     private String message;
-    private String type;
-    private Timestamp sentAt;
 
-    public String getNotificationId() {
-        return notificationId;
-    }
-
-    public void setNotificationId(String notificationId) {
+    public Notification(int notificationId, int userId, String message) {
         this.notificationId = notificationId;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
+        this.userId = userId;
         this.message = message;
     }
 
-    public String getType() {
-        return type;
-    }
-
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Timestamp getSentAt() {
-        return sentAt;
-    }
-
-    public void setSentAt(Timestamp sentAt) {
-        this.sentAt = sentAt;
+    public void send() {
+        System.out.println("[NOTIFICATION SENT to User " + userId + "]: " + message);
     }
 }

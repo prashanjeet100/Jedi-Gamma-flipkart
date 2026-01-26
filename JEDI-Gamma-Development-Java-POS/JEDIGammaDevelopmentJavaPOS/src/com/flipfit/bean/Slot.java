@@ -1,39 +1,50 @@
-/**
- * 
- */
 package com.flipfit.bean;
 
-import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * 
+ * Represents a specific time slot within a Gym Centre.
  */
 public class Slot {
-	private String slotId;
-    private LocalTime startTime;
-    private int totalSeats;
+    private int slotId;
+    private int startTime; // Represented in 24-hour format (e.g., 6 for 6 AM, 18 for 6 PM)
+    private int maximumSeats;
+    private int availableSeats;
+    private WaitingList waitingList;
 
-    public String getSlotId() {
-        return slotId;
-    }
-
-    public void setSlotId(String slotId) {
+    public Slot(int slotId, int startTime, int maximumSeats) {
         this.slotId = slotId;
-    }
-
-    public LocalTime getStartTime() {
-        return startTime;
-    }
-
-    public void setStartTime(LocalTime startTime) {
         this.startTime = startTime;
+        this.maximumSeats = maximumSeats;
+        this.availableSeats = maximumSeats; // Initially, all seats are available
+        // Automatically link a new WaitingList to this slot
+        this.waitingList = new WaitingList(slotId, slotId);
     }
 
-    public int getTotalSeats() {
-        return totalSeats;
+    // Helper method to check availability
+    public boolean isFull() {
+        return availableSeats <= 0;
     }
 
-    public void setTotalSeats(int totalSeats) {
-        this.totalSeats = totalSeats;
+    // Standard Getters and Setters
+    public int getStartTime() { return startTime; }
+    public void setStartTime(int startTime) { this.startTime = startTime; }
+
+    public int getSlotId() { return slotId; }
+    public void setSlotId(int slotId) { this.slotId = slotId; }
+
+    public int getMaximumSeats() { return maximumSeats; }
+    public void setMaximumSeats(int maximumSeats) { this.maximumSeats = maximumSeats; }
+
+    public int getAvailableSeats() { return availableSeats; }
+    public void setAvailableSeats(int availableSeats) { this.availableSeats = availableSeats; }
+
+    public WaitingList getWaitingList() { return waitingList; }
+    public void setWaitingList(WaitingList waitingList) { this.waitingList = waitingList; }
+
+    @Override
+    public String toString() {
+        return "Slot " + slotId + " [" + startTime + ":00] - Available: " + availableSeats + "/" + maximumSeats;
     }
 }
