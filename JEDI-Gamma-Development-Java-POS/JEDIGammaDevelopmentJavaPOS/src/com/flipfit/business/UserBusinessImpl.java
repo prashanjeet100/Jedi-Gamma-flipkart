@@ -5,7 +5,7 @@ import java.util.List;
 import com.flipfit.bean.User;
 
 public class UserBusinessImpl implements UserBusiness {
-    
+
     // Simulating a database
     private List<User> userList = new ArrayList<>();
 
@@ -22,8 +22,8 @@ public class UserBusinessImpl implements UserBusiness {
     public boolean login(String email, String password) {
         for (User user : userList) {
             if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
-                 System.out.println("Login Success! Welcome " + user.getEmail());
-                 return true;
+                System.out.println("Login Success! Welcome " + user.getEmail());
+                return true;
             }
         }
         System.out.println("Login Failed: Invalid credentials.");

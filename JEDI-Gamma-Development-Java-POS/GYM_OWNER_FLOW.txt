@@ -1,0 +1,111 @@
+╔═══════════════════════════════════════════════════════════════════════╗
+║                   FLIPFIT APPLICATION FLOW                            ║
+║              (With Gym Owner Functionality)                           ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+                        ┌─────────────────────┐
+                        │   LANDING PAGE      │
+                        │  1. Login           │
+                        │  2. Registration    │
+                        │  3. Exit            │
+                        └──────────┬──────────┘
+                                   │
+                    ┌──────────────┴──────────────┐
+                    │                             │
+            ┌───────▼────────┐          ┌────────▼────────┐
+            │  REGISTRATION  │          │     LOGIN       │
+            │                │          │  (by email)     │
+            └───────┬────────┘          └────────┬────────┘
+                    │                            │
+                    │ Choose Role:               │ Auto-detect by email:
+                    │ 1. GymAdmin                │ • "admin" → GymAdmin
+                    │ 2. GymCustomer             │ • "owner" → GymOwner
+                    │ 3. GymOwner (NEW!)         │ • other → GymCustomer
+                    │                            │
+                    └────────────┬───────────────┘
+                                 │
+        ┌────────────────────────┼────────────────────────┐
+        │                        │                        │
+┌───────▼─────────┐    ┌────────▼────────┐    ┌─────────▼─────────┐
+│  GYM ADMIN MENU │    │ GYM OWNER MENU  │    │ GYM CUSTOMER MENU │
+│                 │    │     (NEW!)      │    │                   │
+│ 1. View System  │    │ 1. Add Centre   │    │ 1. View Slots     │
+│    Snapshot     │    │ 2. View My      │    │ 2. Book Slot      │
+│ 2. Logout       │    │    Centres      │    │ 3. Cancel Booking │
+│                 │    │ 3. View All     │    │ 4. Logout         │
+└─────────────────┘    │    Centres      │    └───────────────────┘
+                       │ 4. Delete Centre│
+                       │ 5. Logout       │
+                       └─────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                  GYM OWNER CAPABILITIES                               ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  1. ADD NEW GYM CENTRE                                              │
+│     • Enter Centre Name                                             │
+│     • Enter Operating Hours (e.g., "06:00 - 21:00")                │
+│     • Enter Price per Slot                                          │
+│     • Auto-generated Centre ID (starting from 1000)                 │
+│     • Ownership automatically tracked                               │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  2. VIEW MY GYM CENTRES                                             │
+│     Displays table with:                                            │
+│     • Centre ID                                                     │
+│     • Centre Name                                                   │
+│     • Operating Hours                                               │
+│     • Price per Slot                                                │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  3. VIEW ALL GYM CENTRES                                            │
+│     Shows all gym centres in the system (same format as above)      │
+└─────────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────────┐
+│  4. DELETE GYM CENTRE                                               │
+│     • Shows owner's centres                                         │
+│     • Prompts for Centre ID to delete                               │
+│     • Requires confirmation (yes/no)                                │
+│     • Removes from system and ownership tracking                    │
+└─────────────────────────────────────────────────────────────────────┘
+
+╔═══════════════════════════════════════════════════════════════════════╗
+║                     EXAMPLE USAGE                                     ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+Step 1: Register as Gym Owner
+------------------------------
+Email: owner@flipfit.com
+Password: pass123
+User ID: 501
+Role: 3 (GymOwner)
+
+Step 2: Login
+-------------
+Email: owner@flipfit.com  (contains "owner" - auto-routed)
+Password: pass123
+
+Step 3: Add Gym Centre
+----------------------
+Centre Name: Downtown Fitness
+Operating Hours: 05:00 - 23:00
+Price per Slot: 600
+→ Centre ID 1000 created!
+
+Step 4: View My Centres
+-----------------------
+╔═══════════════════════════════════════════════════════════════════════╗
+║ ID         Centre Name          Operating Hours      Price/Slot      ║
+╠═══════════════════════════════════════════════════════════════════════╣
+║ 1000       Downtown Fitness     05:00 - 23:00        Rs. 600         ║
+╚═══════════════════════════════════════════════════════════════════════╝
+
+Step 5: Delete Centre
+---------------------
+Enter Centre ID: 1000
+Confirm: yes
+→ Centre deleted successfully!
